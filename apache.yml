@@ -1,5 +1,27 @@
 - hosts: cloud
   sudo: yes
+  vars:
+   - message: Well hello there
+   - message2: Testing testing
   tasks:
    - name: install apache2
      apt: name=apache2 update_cache=yes state=latest
+
+   - name: enabled mod_rewrite
+     apache2_module: name=rewrite state=present
+     notify:
+       - restart apache2
+
+   - name: change listener port
+     lineinfile: dest=/etc/apache2/ports.conf regexp="^Listen 8081" line="Listen 80" state=present
+     notify:
+      - restart apache2
+
+   - name: change vhost listener port
+     lineinfile: dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:8081>" line="<VirtualHost *:80>" state=present backrefs=yes
+     notify:
+      - restart apache2
+
+  handlers:
+   - name: restart apache2
+     service: name=apache2 state=restarted

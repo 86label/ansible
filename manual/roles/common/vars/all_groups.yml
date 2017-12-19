@@ -1,0 +1,5 @@
+---
+all_groups:
+ - { name: admins, state: present }
+ - { name: devs, state: present }
+ - { name: contractor, state: present }

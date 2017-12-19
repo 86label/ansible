@@ -1,0 +1,13 @@
+[web]
+192.168.30.40 
+
+[jks]
+192.168.30.30
+
+[front:children]
+web
+jks
+
+[front:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant

@@ -1,0 +1,16 @@
+---
+- import_tasks: db_groups_users.yml
+- import_tasks: keys.yml
+
+- name: mysql-server installed
+  package:
+    name: mysql-server
+    state: present
+  become: yes
+
+- name: use custom my.cnf
+  template:
+    src: roles/database/templates/my.cnf.j2
+    dest: /etc/mysql/my.cnf 
+  become: yes
+  notify: restart mysql

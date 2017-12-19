@@ -1,0 +1,24 @@
+---
+groups:
+- {
+    name: "admins",
+    state: "present"
+  }
+- {
+    name: "others",
+    state: "present"
+  }
+
+users:
+- {
+    user: "test1",
+    comment: "Just user 1",
+    state: "present",
+    groups: admin
+  }
+- {
+    user: test2,
+    comment: "User 2",
+    state: present,
+    groups: admin
+  }

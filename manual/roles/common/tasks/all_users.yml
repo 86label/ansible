@@ -1,0 +1,14 @@
+---
+- name: include users
+  include_vars: all_users.yml
+
+- name: ensure all users are added
+  user:
+    createhome: yes
+    comment: "{{ item.comment }}"
+    groups: "{{ item.groups }}"
+    name: "{{ item.user }}"
+    state: "{{ item.state }}"
+  with_items:
+  - "{{ all_users }}"
+  become: yes

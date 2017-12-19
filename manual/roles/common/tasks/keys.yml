@@ -1,0 +1,9 @@
+---
+- name: ensure ssh keys are present
+  authorized_key:
+    key: "{{ lookup('file', 'public_keys/{{ item.user }}.pub') }}"
+    user: "{{ item.user }}"
+  with_items:
+  - "{{ users }}"
+  become: yes
+

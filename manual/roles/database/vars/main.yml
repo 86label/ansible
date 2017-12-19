@@ -1,0 +1,15 @@
+---
+mysql_port: 3306
+mysql_user: mysql
+
+db_users:
+- {
+    user: dbuser1,
+    comment: "Just db user 1",
+    state: present
+  }
+- {
+    user: dbuser2,
+    comment: "db user 2",
+    state: present
+  }

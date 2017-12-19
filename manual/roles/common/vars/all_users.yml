@@ -1,0 +1,4 @@
+---
+all_users:
+- { user: testuser1, comment: "just user 1", state: present, groups: "admins, contractor" }
+- { user: testuser2, comment: "user2", state: present, groups: "admin" }

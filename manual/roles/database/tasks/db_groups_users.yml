@@ -1,0 +1,17 @@
+---
+- name: ensure admins group exists
+  group:
+    name: dba
+    state: present
+  become: yes
+
+- name: ensure all users are added
+  user:
+    createhome: yes
+    comment: "Database user"
+    groups: dba
+    name: "{{ item.user }}"
+    state: "{{ item.state }}"
+  with_items:
+  - "{{ db_users }}"
+  become: yes
